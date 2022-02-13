@@ -32,13 +32,13 @@ final class Direction extends StringValueObject
         }
     }
 
-    public function nextDirection(Direction $direction, string $instruction)
+    public function nextDirection(string $instruction): Direction
     {
         if ($instruction === Instructions::MOVE_FORWARD) {
-            return $direction;
+            return $this;
         }
 
-        $position = array_search($direction->value, self::VALID_DIRECTIONS);
+        $position = array_search($this->value, self::VALID_DIRECTIONS);
 
         if ($instruction === Instructions::MOVE_LEFT) {
             $position = $position === 0 ? count(self::VALID_DIRECTIONS) - 1 : $position - 1;
