@@ -9,17 +9,29 @@ final class Rover
     private $planet;
     private $coordinate;
     private $direction;
+    private $instructions;
 
-    private function __construct(Planet $planet, Coordinate $coordinate, Direction $direction)
+    private function __construct(
+        Planet       $planet,
+        Coordinate   $coordinate,
+        Direction    $direction,
+        Instructions $instructions
+    )
     {
-        $this->planet     = $planet;
-        $this->coordinate = $coordinate;
-        $this->direction  = $direction;
+        $this->planet       = $planet;
+        $this->coordinate   = $coordinate;
+        $this->direction    = $direction;
+        $this->instructions = $instructions;
     }
 
-    public static function create(Planet $planet, Coordinate $coordinate, Direction $direction): self
+    public static function create(
+        Planet       $planet,
+        Coordinate   $coordinate,
+        Direction    $direction,
+        Instructions $instructions
+    ): self
     {
-        return new self($planet, $coordinate, $direction);
+        return new self($planet, $coordinate, $direction, $instructions);
     }
 
     public function getPlanet(): Planet
@@ -37,9 +49,18 @@ final class Rover
         return $this->direction;
     }
 
-    public function executeInstructions(array $instructions)
+    public function getInstructions(): Instructions
     {
+        return $this->instructions;
+    }
 
+    public function executeInstructions()
+    {
+        foreach($this->instructions as $aInstruction) {
+            if ($aInstruction === 'F') {
+
+            }
+        }
     }
 
     /*public function moveLeft(): self

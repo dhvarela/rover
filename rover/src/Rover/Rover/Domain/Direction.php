@@ -8,9 +8,9 @@ use InvalidArgumentException;
 final class Direction extends StringValueObject
 {
     public const DIRECTION_NORTH = 'N';
-    public const DIRECTION_EAST = 'E';
+    public const DIRECTION_EAST  = 'E';
     public const DIRECTION_SOUTH = 'S';
-    public const DIRECTION_WEST = 'W';
+    public const DIRECTION_WEST  = 'W';
 
     private const VALID_DIRECTIONS = [
         self::DIRECTION_NORTH, self::DIRECTION_WEST, self::DIRECTION_SOUTH, self::DIRECTION_EAST

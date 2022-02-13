@@ -35,4 +35,9 @@ final class Coordinate
     {
         return $this->y;
     }
+
+    public function __toString()
+    {
+        return $this->getX() . ',' . $this->getY();
+    }
 }
