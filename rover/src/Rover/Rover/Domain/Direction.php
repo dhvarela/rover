@@ -13,7 +13,7 @@ final class Direction extends StringValueObject
     public const DIRECTION_WEST  = 'W';
 
     private const VALID_DIRECTIONS = [
-        self::DIRECTION_NORTH, self::DIRECTION_WEST, self::DIRECTION_SOUTH, self::DIRECTION_EAST
+        self::DIRECTION_NORTH, self::DIRECTION_EAST, self::DIRECTION_SOUTH, self::DIRECTION_WEST
     ];
 
     public function __construct(string $value)
@@ -30,5 +30,23 @@ final class Direction extends StringValueObject
                 'Unrecognized direction, valid values are ' . implode(",", self::VALID_DIRECTIONS)
             );
         }
+    }
+
+    public function nextDirection(Direction $direction, string $instruction)
+    {
+        if ($instruction === Instructions::MOVE_FORWARD) {
+            return $direction;
+        }
+
+        $position = array_search($direction->value, self::VALID_DIRECTIONS);
+
+        if ($instruction === Instructions::MOVE_LEFT) {
+            $position = $position === 0 ? count(self::VALID_DIRECTIONS) - 1 : $position - 1;
+        }
+        if ($instruction === Instructions::MOVE_RIGHT) {
+            $position = $position === count(self::VALID_DIRECTIONS) - 1 ? 0 : $position + 1;
+        }
+
+        return new Direction(self::VALID_DIRECTIONS[$position]);
     }
 }
