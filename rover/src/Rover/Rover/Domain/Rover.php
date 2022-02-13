@@ -56,23 +56,10 @@ final class Rover
 
     public function executeInstructions()
     {
-        foreach($this->instructions as $aInstruction) {
-            if ($aInstruction === 'F') {
-
-            }
+        foreach($this->getInstructions()->getValues() as $aInstruction) {
+            $this->direction = $this->direction->nextDirection($aInstruction);
+            $this->coordinate = $this->planet->nextCoordinate($this->coordinate, $this->direction);
         }
     }
-
-    /*public function moveLeft(): self
-    {
-        //TODO
-        return $this;
-    }
-
-    public function moveLeft(): self
-    {
-        //TODO
-        return $this;
-    }*/
 
 }
