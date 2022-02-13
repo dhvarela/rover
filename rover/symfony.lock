@@ -365,9 +365,6 @@
     "symfony/string": {
         "version": "v5.3.10"
     },
-    "symfony/test-pack": {
-        "version": "v1.0.9"
-    },
     "symfony/var-dumper": {
         "version": "v5.3.10"
     },
