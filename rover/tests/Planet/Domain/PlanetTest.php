@@ -24,6 +24,26 @@ class PlanetTest extends TestCase
         self::assertEquals(100, $this->planet->getDimensions()->value());
     }
 
+    public function test_should_instantiate_a_planet_with_obstacles(): void
+    {
+        $obstacles = [
+            new Coordinate(2,2),
+            new Coordinate(4,10),
+        ];
+
+        $planet = Planet::create(
+            new Dimensions(10),
+            ...$obstacles
+        );
+
+        $hasObstacle = $planet->coordinateContainsObstacle(new Coordinate(2,2));
+        $hasNoObstacle = $planet->coordinateContainsObstacle(new Coordinate(5,5));
+
+        self::assertCount(2, $planet->getObstacles());
+        self::assertTrue($hasObstacle);
+        self::assertFalse($hasNoObstacle);
+    }
+
     public function test_should_fail_creating_a_small_planet(): void
     {
         $this->expectException(InvalidArgumentException::class);
