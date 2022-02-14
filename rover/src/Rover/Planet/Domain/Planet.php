@@ -2,8 +2,9 @@
 
 namespace App\Rover\Planet\Domain;
 
-use App\Rover\Rover\Domain\Coordinate;
-use App\Rover\Rover\Domain\Direction;
+
+use App\Rover\Shared\Domain\Coordinate;
+use App\Rover\Shared\Domain\Direction;
 
 final class Planet
 {

@@ -2,7 +2,7 @@
 
 namespace App\Tests\Rover\Domain;
 
-use App\Rover\Rover\Domain\Direction;
+use App\Rover\Shared\Domain\Direction;
 use PHPUnit\Framework\TestCase;
 
 class DirectionTest extends TestCase

@@ -5,8 +5,8 @@ namespace App\UI\Command;
 use App\Rover\Planet\Application\PlanetCreator;
 use App\Rover\Planet\Domain\Dimensions;
 use App\Rover\Rover\Application\RoverCreator;
-use App\Rover\Rover\Domain\Coordinate;
-use App\Rover\Rover\Domain\Direction;
+use App\Rover\Shared\Domain\Coordinate;
+use App\Rover\Shared\Domain\Direction;
 use App\Rover\Rover\Domain\Instructions;
 use Exception;
 use InvalidArgumentException;
@@ -57,14 +57,15 @@ class RoversCommand extends Command
                 $input->getArgument('pos-y')
             );
 
-            $direction  = new Direction($input->getArgument('direction'));
+            $direction    = new Direction($input->getArgument('direction'));
             $instructions = new Instructions($input->getArgument('instructions'));
 
             $rover = $this->roverCreator->execute($planet, $coordinate, $direction, $instructions);
+
             $rover->executeInstructions();
 
             $io->definitionList(
-                'History movements:', //TODO history movements
+                'Movement History :', //TODO movement history
                 new TableSeparator(),
                 'Final rover position:',
                 ['x' => $rover->getCoordinate()->getX()],

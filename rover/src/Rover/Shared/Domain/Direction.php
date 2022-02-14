@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Rover\Rover\Domain;
+namespace App\Rover\Shared\Domain;
 
+use App\Rover\Rover\Domain\Instructions;
 use App\Rover\Shared\ValueObject\StringValueObject;
 use InvalidArgumentException;
 

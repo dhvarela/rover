@@ -4,8 +4,8 @@ namespace App\Tests\Rover\Domain;
 
 use App\Rover\Planet\Domain\Dimensions;
 use App\Rover\Planet\Domain\Planet;
-use App\Rover\Rover\Domain\Coordinate;
-use App\Rover\Rover\Domain\Direction;
+use App\Rover\Shared\Domain\Coordinate;
+use App\Rover\Shared\Domain\Direction;
 use App\Rover\Rover\Domain\Instructions;
 use App\Rover\Rover\Domain\Rover;
 use PHPUnit\Framework\TestCase;

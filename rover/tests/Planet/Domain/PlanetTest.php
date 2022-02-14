@@ -5,8 +5,8 @@ namespace App\Tests\Planet\Domain;
 use App\Rover\Planet\Domain\CoordinateOutOfPlanetRange;
 use App\Rover\Planet\Domain\Dimensions;
 use App\Rover\Planet\Domain\Planet;
-use App\Rover\Rover\Domain\Coordinate;
-use App\Rover\Rover\Domain\Direction;
+use App\Rover\Shared\Domain\Coordinate;
+use App\Rover\Shared\Domain\Direction;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 

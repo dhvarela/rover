@@ -2,7 +2,7 @@
 
 namespace App\Rover\Planet\Domain;
 
-use App\Rover\Rover\Domain\Coordinate;
+use App\Rover\Shared\Domain\Coordinate;
 use InvalidArgumentException;
 
 class CoordinateOutOfPlanetRange extends InvalidArgumentException

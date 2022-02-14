@@ -3,6 +3,8 @@
 namespace App\Rover\Rover\Domain;
 
 use App\Rover\Planet\Domain\Planet;
+use App\Rover\Shared\Domain\Coordinate;
+use App\Rover\Shared\Domain\Direction;
 
 final class Rover
 {

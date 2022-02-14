@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Rover\Rover\Domain;
+namespace App\Rover\Shared\Domain;
 
 use InvalidArgumentException;
 
