@@ -4,6 +4,7 @@ namespace App\Tests\Rover\Domain;
 
 use App\Rover\Planet\Domain\Dimensions;
 use App\Rover\Planet\Domain\Planet;
+use App\Rover\Rover\Application\RoverCreator;
 use App\Rover\Shared\Domain\Coordinate;
 use App\Rover\Shared\Domain\Direction;
 use App\Rover\Rover\Domain\Instructions;
@@ -59,5 +60,24 @@ class RoverTest extends TestCase
             ['E', 'FLFRFLL', 'W', 12, 13],
             ['S', 'FFFFFFFFFFF', 'S', 10, 100], //rover appears on top
         ];
+    }
+
+    public function test_should_instantiate_a_rover_and_find_obstacle(): void
+    {
+        $obstacles = [
+            new Coordinate(2,2),
+            new Coordinate(4,10),
+        ];
+
+        $rover = Rover::create(
+            Planet::create(new Dimensions(10), ...$obstacles),
+            new Coordinate(1, 1),
+            new Direction('N'),
+            new Instructions('FRFF')
+        );
+
+        $rover->executeInstructions();
+
+        self::assertEquals([1,2], [$rover->getCoordinate()->getX(), $rover->getCoordinate()->getY()]);
     }
 }

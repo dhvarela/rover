@@ -2,6 +2,7 @@
 
 namespace App\Rover\Rover\Domain;
 
+use App\Rover\Planet\Domain\Obstacle;
 use App\Rover\Planet\Domain\Planet;
 use App\Rover\Shared\Domain\Coordinate;
 use App\Rover\Shared\Domain\Direction;
@@ -56,17 +57,31 @@ final class Rover
         return $this->instructions;
     }
 
-    public function executeInstructions()
+    public function executeInstructions(): ?Obstacle
     {
-        foreach($this->getInstructions()->getValues() as $aInstruction) {
+        foreach ($this->getInstructions()->getValues() as $aInstruction) {
+
             if ($aInstruction === Instructions::MOVE_LEFT) {
                 $this->direction->turnLeft();
             }
             if ($aInstruction === Instructions::MOVE_RIGHT) {
                 $this->direction->turnRight();
             }
-            $this->coordinate = $this->planet->nextCoordinate($this->coordinate, $this->direction);
+
+            $nextCoordinate = $this->planet->nextCoordinate(
+                $this->coordinate,
+                $this->direction
+            );
+
+            if ($this->planet->coordinateContainsObstacle($nextCoordinate)) {
+                $obstacle = new Obstacle($nextCoordinate);
+                break;
+            }
+
+            $this->coordinate = $nextCoordinate;
         }
+
+        return $obstacle ?? null;
     }
 
 }
