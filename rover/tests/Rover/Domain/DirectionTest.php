@@ -20,23 +20,16 @@ class DirectionTest extends TestCase
 
     public function test_should_get_next_direction_on_turn_right(): void
     {
-        $nextDirection = $this->direction->nextDirection('R');
+        $this->direction->turnRight();
 
-        self::assertEquals('E', $nextDirection->value());
+        self::assertEquals('E', $this->direction->value());
     }
 
     public function test_should_get_next_direction_on_turn_left(): void
     {
-        $nextDirection = $this->direction->nextDirection('L');
+        $this->direction->turnLeft();
 
-        self::assertEquals('W', $nextDirection->value());
-    }
-
-    public function test_should_get_next_direction_on_move_forward(): void
-    {
-        $nextDirection = $this->direction->nextDirection('F');
-
-        self::assertEquals('N', $nextDirection->value());
+        self::assertEquals('W', $this->direction->value());
     }
 
 }

@@ -59,7 +59,12 @@ final class Rover
     public function executeInstructions()
     {
         foreach($this->getInstructions()->getValues() as $aInstruction) {
-            $this->direction = $this->direction->nextDirection($aInstruction);
+            if ($aInstruction === Instructions::MOVE_LEFT) {
+                $this->direction->turnLeft();
+            }
+            if ($aInstruction === Instructions::MOVE_RIGHT) {
+                $this->direction->turnRight();
+            }
             $this->coordinate = $this->planet->nextCoordinate($this->coordinate, $this->direction);
         }
     }

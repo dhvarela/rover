@@ -2,16 +2,15 @@
 
 namespace App\Rover\Shared\Domain;
 
-use App\Rover\Rover\Domain\Instructions;
 use App\Rover\Shared\ValueObject\StringValueObject;
 use InvalidArgumentException;
 
 final class Direction extends StringValueObject
 {
     public const DIRECTION_NORTH = 'N';
-    public const DIRECTION_EAST  = 'E';
+    public const DIRECTION_EAST = 'E';
     public const DIRECTION_SOUTH = 'S';
-    public const DIRECTION_WEST  = 'W';
+    public const DIRECTION_WEST = 'W';
 
     private const VALID_DIRECTIONS = [
         self::DIRECTION_NORTH, self::DIRECTION_EAST, self::DIRECTION_SOUTH, self::DIRECTION_WEST
@@ -33,21 +32,19 @@ final class Direction extends StringValueObject
         }
     }
 
-    public function nextDirection(string $instruction): Direction
+    public function turnLeft(): void
     {
-        if ($instruction === Instructions::MOVE_FORWARD) {
-            return $this;
-        }
-
         $position = array_search($this->value, self::VALID_DIRECTIONS);
+        $position = $position === 0 ? count(self::VALID_DIRECTIONS) - 1 : $position - 1;
 
-        if ($instruction === Instructions::MOVE_LEFT) {
-            $position = $position === 0 ? count(self::VALID_DIRECTIONS) - 1 : $position - 1;
-        }
-        if ($instruction === Instructions::MOVE_RIGHT) {
-            $position = $position === count(self::VALID_DIRECTIONS) - 1 ? 0 : $position + 1;
-        }
+        $this->value = self::VALID_DIRECTIONS[$position];
+    }
 
-        return new Direction(self::VALID_DIRECTIONS[$position]);
+    public function turnRight(): void
+    {
+        $position = array_search($this->value, self::VALID_DIRECTIONS);
+        $position = $position === count(self::VALID_DIRECTIONS) - 1 ? 0 : $position + 1;
+
+        $this->value = self::VALID_DIRECTIONS[$position];
     }
 }
