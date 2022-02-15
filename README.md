@@ -12,27 +12,40 @@ You will need to install Docker and Docker compose in your system.
 
     $ git clone https://github.com/dhvarela/rover.git
     $ cd rover/
-    
-##### Up docker-compose to execute all the configurations and launch all the containers
 
+Open a terminal, go to the repository folder and enter to the "docker" folder.
+
+Execute the initConfigFiles.bash script:
+```
+$ cd docker/
+$ bash initConfigFiles.bash
+```
+    
+##### Go to rover folder and up docker-compose to execute all the configurations and launch all the containers
+
+    $ cd ../rover/
     $ docker-compose up -d --build
 
 and check that all containers are "UP"
 
+    $ docker ps -a | grep rover
+
+
 ```
-CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                         NAMES
-d6fc1d793f33        marsrover_nginx     "nginx -g 'daemon ..."   27 minutes ago      Up 27 minutes       443/tcp, 0.0.0.0:86->80/tcp   marsrover_nginx_1
-e1829aa77512        marsrover_php       "docker-php-entryp..."   27 minutes ago      Up 27 minutes       9000/tcp                      marsrover_php_1
+CONTAINER ID        IMAGE           COMMAND                  CREATED             STATUS              PORTS                         NAMES
+d6fc1d793f33        rover_nginx     "nginx -g 'daemon ..."   27 minutes ago      Up 27 minutes       443/tcp, 0.0.0.0:86->80/tcp   rover_nginx_1
+e1829aa77512        rover_php       "docker-php-entryp..."   27 minutes ago      Up 27 minutes       9000/tcp                      rover_php_1
 ```
 
 ##### Pass the composer in container
 
-    $ docker exec -it marsrover_php_1 bash
+    $ docker exec -it rover_php_1 bash
+    $ cp .env.template .env
     $ composer install
     
 ##### Run the tests!!
 
-    $ ./bin/phpunit
+    $ ./bin/phpunit --coverage-html tests/build/coverage-report
 
 You can also run a command and test application by yourself passing your own arguments
 
