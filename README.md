@@ -13,17 +13,16 @@ You will need to install Docker and Docker compose in your system.
     $ git clone https://github.com/dhvarela/rover.git
     $ cd rover/
 
-Open a terminal, go to the repository folder and enter to the "docker" folder.
+##### Symfony .env files:
+Inside the application folder (rover/) you will find a .env.template file.
+Create a new .env file and copy the .env.template file content into this new file.
 
-Execute the initConfigFiles.bash script:
-```
-$ cd docker/
-$ bash initConfigFiles.bash
-```
+    $ cd rover/
+    $ cp .env.template .env
     
-##### Go to rover folder and up docker-compose to execute all the configurations and launch all the containers
+##### Up docker-compose to execute all the configurations and launch all the containers
 
-    $ cd ../rover/
+    $ cd ..
     $ docker-compose up -d --build
 
 and check that all containers are "UP"
@@ -37,10 +36,9 @@ d6fc1d793f33        rover_nginx     "nginx -g 'daemon ..."   27 minutes ago     
 e1829aa77512        rover_php       "docker-php-entryp..."   27 minutes ago      Up 27 minutes       9000/tcp                      rover_php_1
 ```
 
-##### Pass the composer in container
+##### Pass the composer in php container
 
     $ docker exec -it rover_php_1 bash
-    $ cp .env.template .env
     $ composer install
     
 ##### Run the tests!!
