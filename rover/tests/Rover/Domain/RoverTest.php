@@ -76,8 +76,9 @@ class RoverTest extends TestCase
             new Instructions('FRFF')
         );
 
-        $rover->executeInstructions();
+        $obstacle = $rover->executeInstructions();
 
         self::assertEquals([1,2], [$rover->getCoordinate()->getX(), $rover->getCoordinate()->getY()]);
+        self::assertEquals([2,2], [$obstacle->getCoordinate()->getX(), $obstacle->getCoordinate()->getY()]);
     }
 }
