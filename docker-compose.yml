@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  php:
+    build:
+      context: ./docker/php
+      args:
+        TIMEZONE: ${TIMEZONE}
+    expose:
+      - 9000
+    volumes:
+      - ./rover/:/var/www/rover/
+      - ./docker/php/conf.d/error_reporting.ini:/usr/local/etc/php/conf.d/error_reporting.ini
+    networks:
+      - symfony
+  nginx:
+    build:
+      context: ./docker/nginx
+    volumes:
+      - ./rover/:/var/www/rover/
+    ports:
+      - 86:80
+    networks:
+      - symfony
+
+networks:
+  symfony:
